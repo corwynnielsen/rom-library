@@ -40,7 +40,7 @@ def read_files(url):
             elif link['href'].endswith('.7z') and usaTag in link.text:
                 zip_links.append(link.text)
 
-        #print(zip_links)
+        print(zip_links)
 
         cleaned_list = []
 
@@ -53,7 +53,7 @@ def read_files(url):
                     link = link.rstrip('.zip')
                     cleaned_list.append(link)
 
-        #print(cleaned_list)
+        print(cleaned_list)
 
         libraryPath = '/run/media/SN01T/Emulation/roms/thelibrary'
         if not os.path.exists(libraryPath):
@@ -109,6 +109,7 @@ def read_files(url):
             print("Console path already exists.")
 
         # Based on your actual url that you use to download games off of, change the url below to match your urls. I am not able to openly post the links I use due to potential legal issues of downloading roms off the internet.
+        print(f"Creating download files for {len(cleaned_list)} games")
         for title in cleaned_list:
             with open(consolePath + '/' + title + '.py', 'w') as f:
                 f.write(
@@ -206,7 +207,7 @@ def read_files(url):
 
 
 def addLibrary():
-    xmlPath = os.path.expanduser('~/.emulationstation/custom_systems/es_systems.xml')
+    xmlPath = os.path.expanduser('~/ES-DE/custom_systems/es_systems.xml')
     with open(xmlPath, 'r') as xml_file:
         xml_content = xml_file.read()
     #print(xml_content)
