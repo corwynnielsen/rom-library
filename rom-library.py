@@ -2,19 +2,24 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
+roms_dir = '/run/media/SN01T/Emulation/roms/'
+
 # Based on your actual url that you use to download games off of, change the url below to match your urls. I am not able to openly post the links I use due to potential legal issues of downloading roms off the internet.
 snes_url = 'XXXXXXX'
 nes_url  = 'XXXXXXX'
 n64_url  = 'XXXXXXX'
+gb_url   = 'XXXXXXX'
 gbc_url  = 'XXXXXXX'
 gba_url  = 'XXXXXXX'
-gb_url   = 'XXXXXXX'
+gc_url   = 'XXXXXXX'
 nds_url  = 'XXXXXXX'
 n3ds_url = 'XXXXXXX'
-gc_url   = 'XXXXXXX'
+wii_url  = 'XXXXXXX'
+wiiu_url = 'XXXXXXX'
 psx_url  = 'XXXXXXX'
 ps2_url  = 'XXXXXXX'
 psp_url  = 'XXXXXXX'
+dc_url   = 'XXXXXXX'
 
 def read_files(url):
     # Send a GET request to the URL
@@ -40,7 +45,7 @@ def read_files(url):
             elif link['href'].endswith('.7z') and usaTag in link.text:
                 zip_links.append(link.text)
 
-        print(zip_links)
+        # print(zip_links)
 
         cleaned_list = []
 
@@ -53,9 +58,9 @@ def read_files(url):
                     link = link.rstrip('.zip')
                     cleaned_list.append(link)
 
-        print(cleaned_list)
+        # print(cleaned_list)
 
-        libraryPath = '/run/media/SN01T/Emulation/roms/romlibrary'
+        libraryPath = f'{roms_dir}romlibrary'
         if not os.path.exists(libraryPath):
             os.makedirs(libraryPath)
         else:
@@ -73,14 +78,17 @@ def read_files(url):
         elif n64_url in url:
             consolePath = libraryPath + '/n64'
             print(consolePath)
+        elif gb_url in url:
+            consolePath = libraryPath + '/gb'
+            print(consolePath)
         elif gbc_url in url:
             consolePath = libraryPath + '/gbc'
             print(consolePath)
         elif gba_url in url:
             consolePath = libraryPath + '/gba'
             print(consolePath)
-        elif gb_url in url:
-            consolePath = libraryPath + '/gb'
+        elif gc_url in url:
+            consolePath = libraryPath + '/gc'
             print(consolePath)
         elif nds_url in url:
             consolePath = libraryPath + '/nds'
@@ -88,8 +96,11 @@ def read_files(url):
         elif n3ds_url in url:
             consolePath = libraryPath + '/n3ds'
             print(consolePath)
-        elif gc_url in url:
-            consolePath = libraryPath + '/gc'
+        elif wii_url in url:
+            consolePath = libraryPath + '/wii'
+            print(consolePath)
+        elif wiiu_url in url:
+            consolePath = libraryPath + '/wiiu'
             print(consolePath)
         elif ps2_url in url:
             consolePath = libraryPath + '/ps2'
@@ -99,6 +110,9 @@ def read_files(url):
             print(consolePath)
         elif psx_url in url:
             consolePath = libraryPath + '/psx'
+            print(consolePath)
+        elif dc_url in url:
+            consolePath = libraryPath + '/dreamcast'
             print(consolePath)
         else:
             print("URL not recognized. Can't create console path.")
@@ -123,40 +137,49 @@ def read_files(url):
                     '# Based on your actual url that you use to download games off of, change the url below to match your urls. I am not able to openly post the links I use due to potential legal issues of downloading roms off the internet.\n'
                     'if \'snes\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{snes_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/snes\'\n'
-                    'elif \'gc\' in str(os.path.abspath(__file__)):\n'
-                    f'   url = \'{gc_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/gc\'\n'
+                    f'   file_path = \'{roms_dir}snes\'\n'
                     'elif \'nes\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{nes_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/nes\'\n'
+                    f'   file_path = \'{roms_dir}nes\'\n'
                     'elif \'n64\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{n64_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/n64\'\n'
-                    'elif \'gbc\' in str(os.path.abspath(__file__)):\n'
-                    f'   url = \'{gbc_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/gbc\'\n'
-                    'elif \'gba\' in str(os.path.abspath(__file__)):\n'
-                    f'   url = \'{gba_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/gba\'\n'
+                    f'   file_path = \'{roms_dir}n64\'\n'
                     'elif \'gb\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{gb_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/gb\'\n'
-                    'elif \'psx\' in str(os.path.abspath(__file__)):\n'
-                    f'   url = \'{psx_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/psx\'\n'
-                    'elif \'ps2\' in str(os.path.abspath(__file__)):\n'
-                    f'   url = \'{ps2_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/ps2\'\n'
-                    'elif \'psp\' in str(os.path.abspath(__file__)):\n'
-                    f'   url = \'{psp_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/psp\'\n'
+                    f'   file_path = \'{roms_dir}gb\'\n'
+                    'elif \'gbc\' in str(os.path.abspath(__file__)):\n'
+                    f'   url = \'{gbc_url}\'\n'
+                    f'   file_path = \'{roms_dir}gbc\'\n'
+                    'elif \'gba\' in str(os.path.abspath(__file__)):\n'
+                    f'   url = \'{gba_url}\'\n'
+                    f'   file_path = \'{roms_dir}gba\'\n'
+                    'elif \'gc\' in str(os.path.abspath(__file__)):\n'
+                    f'   url = \'{gc_url}\'\n'
+                    f'   file_path = \'{roms_dir}gc\'\n'
                     'elif \'nds\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{nds_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/nds\'\n'
+                    f'   file_path = \'{roms_dir}nds\'\n'
                     'elif \'n3ds\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{n3ds_url}\'\n'
-                    '   file_path = \'/run/media/SN01T/Emulation/roms/n3ds\'\n'
+                    f'   file_path = \'{roms_dir}n3ds\'\n'
+                    'elif \'wii\' in str(os.path.abspath(__file__)):\n'
+                    f'   url = \'{wii_url}\'\n'
+                    f'   file_path = \'{roms_dir}wii\'\n'
+                    'elif \'wiiu\' in str(os.path.abspath(__file__)):\n'
+                    f'   url = \'{wiiu_url}\'\n'
+                    f'   file_path = \'{roms_dir}wiiu\'\n'
+                    'elif \'psx\' in str(os.path.abspath(__file__)):\n'
+                    f'   url = \'{psx_url}\'\n'
+                    f'   file_path = \'{roms_dir}psx\'\n'
+                    'elif \'ps2\' in str(os.path.abspath(__file__)):\n'
+                    f'   url = \'{ps2_url}\'\n'
+                    f'   file_path = \'{roms_dir}ps2\'\n'
+                    'elif \'psp\' in str(os.path.abspath(__file__)):\n'
+                    f'   url = \'{psp_url}\'\n'
+                    f'   file_path = \'{roms_dir}psp\'\n'
+                    'elif \'dreamcast\' in str(os.path.abspath(__file__)):\n'
+                    f'   url = \'{dc_url}\'\n'
+                    f'   file_path = \'{roms_dir}dreamcast\'\n'
                     'else:\n'
                     '   print("Current directory not recognized.")\n'
                     '\n'
@@ -245,12 +268,15 @@ addLibrary()
 read_files(snes_url)
 read_files(nes_url)
 read_files(n64_url)
+read_files(gb_url)
 read_files(gbc_url)
 read_files(gba_url)
-read_files(gb_url)
+read_files(gc_url)
 read_files(nds_url)
 read_files(n3ds_url)
-read_files(gc_url)
+read_files(wii_url)
+read_files(wiiu_url)
 read_files(psx_url)
 read_files(ps2_url)
 read_files(psp_url)
+read_files(dc_url)
