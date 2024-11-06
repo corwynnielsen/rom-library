@@ -206,7 +206,7 @@ def read_files(url):
 
 
 def addLibrary():
-    xmlPath = os.path.expanduser('~/.emulationstation/custom_systems/es_systems.xml')
+    xmlPath = os.path.expanduser('~/ES-DE/custom_systems/es_systems.xml')
     with open(xmlPath, 'r') as xml_file:
         xml_content = xml_file.read()
     #print(xml_content)
