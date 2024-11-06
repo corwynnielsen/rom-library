@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # Based on your actual url that you use to download games off of, change the url below to match your urls. I am not able to openly post the links I use due to potential legal issues of downloading roms off the internet.
-snes_url = 'XXXXXXX'
+snes_url = 'https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System'
 nes_url  = 'XXXXXXX'
 n64_url  = 'XXXXXXX'
 gbc_url  = 'XXXXXXX'
@@ -55,50 +55,50 @@ def read_files(url):
 
         #print(cleaned_list)
 
-        theLibraryPath = os.path.expanduser('~/Emulation/roms/thelibrary')
-        if not os.path.exists(theLibraryPath):
-            os.makedirs(theLibraryPath)
+        libraryPath = '/run/media/SN01T/Emulation/roms/thelibrary'
+        if not os.path.exists(libraryPath):
+            os.makedirs(libraryPath)
         else:
-            print("Library path (/roms/thelibrary) already set.")
+            print(f"Library path {libraryPath} already set.")
 
         print(url)
 
         # Based on your actual url that you use to download games off of, change the strings below to match your urls. I am not able to openly post the links I use due to potential legal issues of downloading roms off the internet.
         if snes_url in url:         
-            consolePath = theLibraryPath + '/snes'
+            consolePath = libraryPath + '/snes'
             print(consolePath)
         elif nes_url in url:
-            consolePath = theLibraryPath + '/nes'
+            consolePath = libraryPath + '/nes'
             print(consolePath)
         elif n64_url in url:
-            consolePath = theLibraryPath + '/n64'
+            consolePath = libraryPath + '/n64'
             print(consolePath)
         elif gbc_url in url:
-            consolePath = theLibraryPath + '/gbc'
+            consolePath = libraryPath + '/gbc'
             print(consolePath)
         elif gba_url in url:
-            consolePath = theLibraryPath + '/gba'
+            consolePath = libraryPath + '/gba'
             print(consolePath)
         elif gb_url in url:
-            consolePath = theLibraryPath + '/gb'
+            consolePath = libraryPath + '/gb'
             print(consolePath)
         elif nds_url in url:
-            consolePath = theLibraryPath + '/nds'
+            consolePath = libraryPath + '/nds'
             print(consolePath)
         elif n3ds_url in url:
-            consolePath = theLibraryPath + '/n3ds'
+            consolePath = libraryPath + '/n3ds'
             print(consolePath)
         elif gc_url in url:
-            consolePath = theLibraryPath + '/gc'
+            consolePath = libraryPath + '/gc'
             print(consolePath)
         elif ps2_url in url:
-            consolePath = theLibraryPath + '/ps2'
+            consolePath = libraryPath + '/ps2'
             print(consolePath)
         elif psp_url in url:
-            consolePath = theLibraryPath + '/psp'
+            consolePath = libraryPath + '/psp'
             print(consolePath)
         elif psx_url in url:
-            consolePath = theLibraryPath + '/psx'
+            consolePath = libraryPath + '/psx'
             print(consolePath)
         else:
             print("URL not recognized. Can't create console path.")
@@ -122,40 +122,40 @@ def read_files(url):
                     '# Based on your actual url that you use to download games off of, change the url below to match your urls. I am not able to openly post the links I use due to potential legal issues of downloading roms off the internet.\n'
                     'if \'snes\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{snes_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/snes\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/snes\'\n'
                     'elif \'gc\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{gc_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/gc\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/gc\'\n'
                     'elif \'nes\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{nes_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/nes\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/nes\'\n'
                     'elif \'n64\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{n64_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/n64\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/n64\'\n'
                     'elif \'gbc\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{gbc_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/gbc\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/gbc\'\n'
                     'elif \'gba\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{gba_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/gba\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/gba\'\n'
                     'elif \'gb\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{gb_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/gb\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/gb\'\n'
                     'elif \'psx\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{psx_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/psx\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/psx\'\n'
                     'elif \'ps2\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{ps2_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/ps2\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/ps2\'\n'
                     'elif \'psp\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{psp_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/psp\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/psp\'\n'
                     'elif \'nds\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{nds_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/nds\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/nds\'\n'
                     'elif \'n3ds\' in str(os.path.abspath(__file__)):\n'
                     f'   url = \'{n3ds_url}\'\n'
-                    '   file_path = os.path.expanduser(\'~/Emulation/roms/n3ds\')\n'
+                    '   file_path = \'/run/media/SN01T/Emulation/roms/n3ds\'\n'
                     'else:\n'
                     '   print("Current directory not recognized.")\n'
                     '\n'
@@ -214,14 +214,12 @@ def addLibrary():
     libraryContent = """  <system>
     <name>Library</name>
     <fullname>The Library</fullname>
-    <path>~/Emulation/roms/thelibrary</path>
+    <path>/run/media/SN01T/Emulation/roms/thelibrary</path>
     <extension>.py</extension>
     <command>/usr/bin/python3 %ROM%</command>
     <theme>library</theme>
   </system>
 """
-
-    libraryContent = libraryContent.replace('~', os.path.expanduser('~'))
 
     startTag = xml_content.find('<systemList>')
     endTag = xml_content.find('</systemList>')
