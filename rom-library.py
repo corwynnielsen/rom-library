@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # Based on your actual url that you use to download games off of, change the url below to match your urls. I am not able to openly post the links I use due to potential legal issues of downloading roms off the internet.
-snes_url = 'https://myrient.erista.me/files/No-Intro/Nintendo%20-%20Super%20Nintendo%20Entertainment%20System'
+snes_url = 'XXXXXXX'
 nes_url  = 'XXXXXXX'
 n64_url  = 'XXXXXXX'
 gbc_url  = 'XXXXXXX'
