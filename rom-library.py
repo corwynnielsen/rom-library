@@ -25,7 +25,7 @@ psvita_url = 'XXXXXXX'
 dc_url     = 'XXXXXXX'
 rom_urls = [
     snes_url, nes_url, n64_url, gb_url, gbc_url, gba_url ,gc_url, nds_url,
-    n3ds_url, wii_url, wiiu_url, psx_url ,ps2_url,psp_url,psvita_url, dc_url
+    n3ds_url, wii_url, wiiu_url, psx_url, ps2_url, psp_url, psvita_url, dc_url
 ]
 
 def read_files(url):
