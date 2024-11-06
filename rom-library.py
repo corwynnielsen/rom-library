@@ -55,7 +55,7 @@ def read_files(url):
 
         print(cleaned_list)
 
-        libraryPath = '/run/media/SN01T/Emulation/roms/thelibrary'
+        libraryPath = '/run/media/SN01T/Emulation/roms/romlibrary'
         if not os.path.exists(libraryPath):
             os.makedirs(libraryPath)
         else:
@@ -214,11 +214,11 @@ def addLibrary():
 
     libraryContent = f"""
         <system>
-            <name>Library</name>
-            <fullname>The Library</fullname>
-            <path>/run/media/SN01T/Emulation/roms/thelibrary</path>
+            <name>romlibrary</name>
+            <fullname>ROM Library</fullname>
+            <path>%ROMPATH%/romlibrary</path>
             <extension>.py</extension>
-            <command>source {os.path.expanduser('~/rom-library/venv/bin/activate')} && python %ROM%</command>
+            <command>/bin/bash {os.path.expanduser('~/rom-library/download.sh')} %ROM%</command>
             <theme>library</theme>
         </system>
     """
