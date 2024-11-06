@@ -212,15 +212,16 @@ def addLibrary():
         xml_content = xml_file.read()
     #print(xml_content)
 
-    libraryContent = """  <system>
-    <name>Library</name>
-    <fullname>The Library</fullname>
-    <path>/run/media/SN01T/Emulation/roms/thelibrary</path>
-    <extension>.py</extension>
-    <command>/usr/bin/python3 %ROM%</command>
-    <theme>library</theme>
-  </system>
-"""
+    libraryContent = f"""
+        <system>
+            <name>Library</name>
+            <fullname>The Library</fullname>
+            <path>/run/media/SN01T/Emulation/roms/thelibrary</path>
+            <extension>.py</extension>
+            <command>source {os.path.expanduser('~/rom-library/venv/bin/activate')} && python %ROM%</command>
+            <theme>library</theme>
+        </system>
+    """
 
     startTag = xml_content.find('<systemList>')
     endTag = xml_content.find('</systemList>')
