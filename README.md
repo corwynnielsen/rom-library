@@ -1,49 +1,41 @@
-# The Library for EmuDeck Emulation Station
+# ROM Library for Emulation Station
 
-You must have Emulation Station installed first. You can find guides on Youtube and Google on how to install EmuDeck.
+You must have Emulation Station installed first
 
 ### Prerequisites before running the python script:
+
 1. Go to Desktop mode
 2. Open Konsole
 3. Check that Python is installed:
+
 ```
 python -V
 ```
-5. Install PIP:
+
+4. Clone the repository:
+
 ```
-sudo pacman-key --init
-sudo pacman-key --populate archlinux
-wget https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
+git clone https://github.com/corwynnielsen/rom-library.git && cd rom-library
 ```
-6. Add PIP to PATH:
+
+5. Create and source Python venv:
+
 ```
-nano ~/.bashrc
+python -m venv venv && source venv/bin/activate
 ```
-&emsp;&emsp;Add at the end of the script
+
+6. Install required libraries to venv:
+
 ```
-PATH="$HOME/.local/bin:$PATH"
-```
-&emsp;&emsp;CTRL+X then Y then ENTER (Exiting the .bashrc script)
-```
-source ~/.bashrc
-```
-8. Confirm that PIP is correctly added to PATH:
-```
-pip -V
-```
-9. Install python libraries:
-```
-pip install requests
-pip install beautifulsoup4
-pip install py7zr
+python -m pip install -r requirements.txt
 ```
 
 ### Once the libraries are successfully installed, you can run the python script in Konsole.
+
 ```
-/usr/bin/python3 path/to/script.py
+python rom-library.py
 ```
 
-After running the script, open Steam in Desktop mode or go back to Game mode, then run Emulation Station. You will now see "The Library" in the main menu.<br />
+After running the script, open Steam in Desktop mode or go back to Game mode, then run Emulation Station. You will now see "ROM Library" in the main menu.<br />
 <br />
-NOTE: Make sure to change the "XXXXXX" with the correct URLs and strings in the python script. Running the script as is will not succeed. Due to legal concerns, I chose not to share the URLs I used to download roms. It's fairly easy to find the URLs on Google. Just make sure it's safe.
+NOTE: Make sure to change the "XXXXXX" with the correct URLs in the python script.
