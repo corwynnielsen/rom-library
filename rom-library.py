@@ -218,7 +218,7 @@ def addLibrary():
             <fullname>ROM Library</fullname>
             <path>%ROMPATH%/romlibrary</path>
             <extension>.py</extension>
-            <command>/bin/bash {os.path.expanduser('~/rom-library/download.sh')} %ROM%</command>
+            <command>/bin/bash {os.path.expanduser('~/rom-library/download.sh')} "%ROM%"</command>
             <theme>library</theme>
         </system>
     """
