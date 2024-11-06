@@ -1,6 +1,6 @@
-# ROM Library for Emulation Station
+# ROM Library for Emudeck + Emulation Station
 
-You must have Emulation Station installed first
+Emudeck with Emulation Station must be installed first.
 
 ### Prerequisites before running the python script:
 
@@ -36,6 +36,7 @@ python -m pip install -r requirements.txt
 python rom-library.py
 ```
 
-After running the script, open Steam in Desktop mode or go back to Game mode, then run Emulation Station. You will now see "ROM Library" in the main menu.<br />
+After running the script, the ROM Library will be available as a new Emulator in Emulation Station. When a ROM is selected from the ROM Library, the screen will turn black while the ROM downloads. Once the download completes, it will be placed in the appropriate roms folder and can be played.
+<br />
 <br />
 NOTE: Make sure to change the "XXXXXX" with the correct URLs in the python script.
