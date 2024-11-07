@@ -1,34 +1,21 @@
 import os
 import requests
+import yaml
 from bs4 import BeautifulSoup
 from pathlib import Path
 
 roms_dir = "/run/media/SN01T/Emulation/roms/"
 systems_xml_path = "~/ES-DE/custom_systems/es_systems.xml"
+rom_urls =  {}
 
-# Based on the actual ROM download url, change the url below to correct urls.
-snes_url   = "XXXXXXX"
-nes_url    = "XXXXXXX"
-n64_url    = "XXXXXXX"
-gb_url     = "XXXXXXX"
-gbc_url    = "XXXXXXX"
-gba_url    = "XXXXXXX"
-gc_url     = "XXXXXXX"
-nds_url    = "XXXXXXX"
-n3ds_url   = "XXXXXXX"
-wii_url    = "XXXXXXX"
-wiiu_url   = "XXXXXXX"
-psx_url    = "XXXXXXX"
-ps2_url    = "XXXXXXX"
-psp_url    = "XXXXXXX"
-psvita_url = "XXXXXXX"
-dc_url     = "XXXXXXX"
-rom_urls = [
-    snes_url, nes_url, n64_url, gb_url, gbc_url, gba_url ,gc_url, nds_url,
-    n3ds_url, wii_url, wiiu_url, psx_url, ps2_url, psp_url, psvita_url, dc_url
-]
+with open(os.path.expanduser("rom-urls.yml")) as stream:
+    try:
+        rom_urls = yaml.safe_load(stream)
+    except yaml.YAMLError as exc:
+        print(exc)
 
-def read_files(url):
+def read_files(console, url):
+    print(f"Creating download files for {console}")
     # Send a GET request to the URL
     response = requests.get(url)
     if response.status_code == 200:
@@ -47,58 +34,14 @@ def read_files(url):
             if not any(w in link.text for w in filteredWords) and any(extension in link["href"] for extension in accepted_file_extensions) and usaTag in link.text:
                 zip_links.append(link)
 
-        libraryPath = f"{roms_dir}romlibrary"
-        print(f"Library path: {libraryPath}")
-        if not os.path.exists(libraryPath):
-            os.makedirs(libraryPath)
-        else:
-            print(f"Library path already exists, skipping mkdir.")
-
-        if snes_url == url:         
-            consolePath = libraryPath + "/snes"
-        elif nes_url == url:
-            consolePath = libraryPath + "/nes"
-        elif n64_url == url:
-            consolePath = libraryPath + "/n64"
-        elif gb_url == url:
-            consolePath = libraryPath + "/gb"
-        elif gbc_url == url:
-            consolePath = libraryPath + "/gbc"
-        elif gba_url == url:
-            consolePath = libraryPath + "/gba"
-        elif gc_url == url:
-            consolePath = libraryPath + "/gc"
-        elif nds_url == url:
-            consolePath = libraryPath + "/nds"
-        elif n3ds_url == url:
-            consolePath = libraryPath + "/n3ds"
-        elif wii_url == url:
-            consolePath = libraryPath + "/wii"
-        elif wiiu_url == url:
-            consolePath = libraryPath + "/wiiu"
-        elif psx_url == url:
-            consolePath = libraryPath + "/psx"
-        elif ps2_url == url:
-            consolePath = libraryPath + "/ps2"
-        elif psp_url == url:
-            consolePath = libraryPath + "/psp"
-        elif psvita_url == url:
-            consolePath = libraryPath + "/psvita"
-        elif dc_url == url:
-            consolePath = libraryPath + "/dreamcast"
-        else:
-            print("URL not recognized. Can't create console path.")
-
-        print(f"Console path: {consolePath}")
-        console = os.path.basename(os.path.normpath(consolePath))
-
+        consolePath = f"{roms_dir}romlibrary/{console}"
         if not os.path.exists(consolePath):
             os.makedirs(consolePath)
         else:
             print("Console path dir already exists, skipping mkdir.")
-
-        print(f"Creating download files for {len(zip_links)} games")
+        print(f"Console path: {consolePath}")
         
+        print(f"Creating download files for {len(zip_links)} games")
         for link in zip_links:
             filename = Path(link.text).stem
             with open(f"{consolePath}/{filename}.py", "w") as f:
@@ -171,6 +114,7 @@ def addLibrary():
 # Initialize ROM Library in es_systems.xml then export download ROM python scripts for each system
 addLibrary()
 
-for url in rom_urls:
+for console_key, url in rom_urls.items():
     if url not in "XXXXXXX":
-        read_files(url)
+        console = console_key.split("_")[0]
+        read_files(console, url)
